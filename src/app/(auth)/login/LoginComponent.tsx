@@ -7,11 +7,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/Context/AuthContext";
 import { FormEvent, useState } from "react";
-import { loginUserAction } from "../Actions/loginUserAction";
+
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { loginUserAction } from "@/app/Actions/loginUserAction";
 
 export const LoginComponent = () => {
+  const router = useRouter();
   const { setAccessToken, setUser } = useAuth();
 
   const [email, setEmail] = useState("");
@@ -87,7 +90,11 @@ export const LoginComponent = () => {
                   "Submit"
                 )}
               </Button>
-              <Button type={"button"} variant={"ghost"}>
+              <Button
+                onClick={() => router.push("/register")}
+                type={"button"}
+                variant={"ghost"}
+              >
                 Register
               </Button>
             </div>
