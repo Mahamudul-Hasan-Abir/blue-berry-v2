@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import FooterSection from "@/Footer/Footer";
+import { AuthProvider } from "@/Context/AuthContext";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,8 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.className} ${poppins} antialiased`}>
-        {children}
-        <FooterSection></FooterSection>
+        <AuthProvider>
+          {children}
+          <FooterSection></FooterSection>
+          <Toaster></Toaster>
+        </AuthProvider>
       </body>
     </html>
   );
