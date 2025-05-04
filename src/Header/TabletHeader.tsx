@@ -1,92 +1,4 @@
-// import Container from "@/components/ui/Container/Container";
-// import {
-//   DropdownMenu,
-//   DropdownMenuContent,
-//   DropdownMenuGroup,
-//   DropdownMenuItem,
-//   DropdownMenuTrigger,
-// } from "@/components/ui/dropdown-menu";
-// import { Input } from "@/components/ui/input";
-// import {
-//   ChevronDown,
-//   Menu,
-//   Search,
-//   ShoppingCart,
-//   Star,
-//   UserRound,
-// } from "lucide-react";
-// import Image from "next/image";
-
-// const TabletHeader = () => {
-//   return (
-//     <Container>
-//       <nav className=" grid grid-cols-12 my-2">
-//         <div className=" col-span-4 grid grid-cols-3 gap-2">
-//           <div className="relative h-full col-span-2 ">
-//             <Image
-//               src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736070154/logo_nbbh2f.png"
-//               alt="Logo"
-//               fill
-//               className="object-contain"
-//               priority
-//             />
-//           </div>
-//           <div className="col-span-1 flex justify-center items-center">
-//             <div className="border-[1px] p-2 border-accent rounded-xl">
-//               <svg
-//                 className="svg-icon size-6"
-//                 viewBox="0 0 1024 1024"
-//                 version="1.1"
-//                 xmlns="http://www.w3.org/2000/svg"
-//               >
-//                 <path
-//                   className="fill-primary"
-//                   d="M384 928H192a96 96 0 0 1-96-96V640a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM192 608a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V640a32 32 0 0 0-32-32H192zM784 928H640a96 96 0 0 1-96-96V640a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v144a32 32 0 0 1-64 0V640a32 32 0 0 0-32-32H640a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h144a32 32 0 0 1 0 64zM384 480H192a96 96 0 0 1-96-96V192a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM192 160a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32H192zM832 480H640a96 96 0 0 1-96-96V192a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM640 160a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32H640z"
-//                 ></path>
-//               </svg>
-//             </div>
-//           </div>
-//         </div>
-//         <div className=" col-span-5 grid grid-cols-5">
-//           <Input className="col-span-4 h-full border-r-0 rounded-r-none"></Input>
-//           <div className="col-span-1 flex justify-center items-center border-[1px] border-accent rounded-md border-l-0 rounded-l-none">
-//             <Search className="size-5"></Search>
-//           </div>
-//         </div>
-//         <div className=" col-span-3 flex gap-4 justify-center items-center">
-//           <DropdownMenu>
-//             <DropdownMenuTrigger asChild>
-//               <div className="nav-link flex p-[0] font-Poppins leading-[28px] text-[15px] items-center font-medium text-[#3d4750] hover:text-primary  tracking-[0.03rem] ">
-//                 <div className="text-primary">
-//                   <UserRound className="size-6"></UserRound>
-//                 </div>
-//               </div>
-//             </DropdownMenuTrigger>
-//             <DropdownMenuContent className="w-40">
-//               <DropdownMenuGroup>
-//                 <DropdownMenuItem>Login</DropdownMenuItem>
-//                 <DropdownMenuItem>Register</DropdownMenuItem>
-//                 <DropdownMenuItem>Checkout</DropdownMenuItem>
-//               </DropdownMenuGroup>
-//             </DropdownMenuContent>
-//           </DropdownMenu>
-//           <div className="text-primary">
-//             <Star className="size-6"></Star>
-//           </div>
-//           <div className="text-primary">
-//             <ShoppingCart className="size-6"></ShoppingCart>
-//           </div>
-//           <div className="text-primary">
-//             <Menu className="size-6"></Menu>
-//           </div>
-//         </div>
-//       </nav>
-//     </Container>
-//   );
-// };
-
-// export default TabletHeader;
-
+"use client";
 import Container from "@/components/ui/Container/Container";
 import {
   DropdownMenu,
@@ -111,8 +23,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useRouter } from "next/navigation";
 
 const TabletHeader = () => {
+  const router = useRouter();
   return (
     <Container>
       <nav className="grid grid-cols-12 my-2 md:gap-0 gap-3">
@@ -162,8 +76,12 @@ const TabletHeader = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40">
               <DropdownMenuGroup>
-                <DropdownMenuItem>Login</DropdownMenuItem>
-                <DropdownMenuItem>Register</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push("/login")}>
+                  Login
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push("/login")}>
+                  Register
+                </DropdownMenuItem>
                 <DropdownMenuItem>Checkout</DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
