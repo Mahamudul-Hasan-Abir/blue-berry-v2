@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -12,8 +13,12 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { registerUserAction } from "../../Actions/registerUserAction";
 import Link from "next/link";
+import FileUpload from "@/FileUpload/FileUpload";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export const RegisterComponent = () => {
+  const router = useRouter();
   const { setAccessToken, setUser } = useAuth();
 
   const [name, setName] = useState("");
@@ -21,37 +26,82 @@ export const RegisterComponent = () => {
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
-  const [profileImage, setProfileImage] = useState("");
+  const [profileImage, setProfileImage] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
-
+  const [clearImage, setClearImage] = useState(false);
   const handleregister = async (e: FormEvent) => {
     e.preventDefault();
+
+    // Manual validations for  fields
+    if (!name.trim()) {
+      toast.error("Full Name is required!");
+      return;
+    }
+    if (!email.trim()) {
+      toast.error("Email is required!");
+      return;
+    }
+    if (!password.trim()) {
+      toast.error("Password is required!");
+      return;
+    }
+    if (!phone.trim()) {
+      toast.error("Phone number is required!");
+      return;
+    }
+    if (!address.trim()) {
+      toast.error("Address is required!");
+      return;
+    }
+
     setLoading(true);
 
     try {
-      const res = await registerUserAction({
-        email,
-        password,
-        name,
-        phone,
-        address,
-        profileImage,
-      });
+      const formData = new FormData();
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("phone", phone);
+      formData.append("address", address);
+      if (profileImage) {
+        formData.append("profileImage", profileImage);
+      }
+
+      const res = await registerUserAction(formData);
       setAccessToken(res.token);
       setUser(res.data);
       toast.success(res.message);
-      console.log("consoling from register compoent", res);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      setName("");
+      setEmail("");
+      setPassword("");
+      setPhone("");
+      setAddress("");
+      setProfileImage(null);
+      setClearImage(true); // Trigger clearing of image preview
+      setTimeout(() => setClearImage(false), 1000);
     } catch (error: any) {
-      toast.error(error.message || "registration failed");
+      toast.error(error.message || "Registration failed");
     } finally {
       setLoading(false);
     }
   };
+
   return (
     <Container>
       <div className="flex justify-center items-start min-h-screen w-full lg:items-center">
         <div className="w-full">
+          <div
+            onClick={() => router.push("/")}
+            className=" w-30 h-20  relative mx-auto hover:cursor-pointer"
+          >
+            <Image
+              src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736070154/logo_nbbh2f.png"
+              alt="Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
           <div className="mb-5">
             <Heading className="text-center">Register</Heading>
             <p className="text-center mt-2.5">
@@ -71,7 +121,6 @@ export const RegisterComponent = () => {
                 placeholder="Your Full Name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                required
               />
             </div>
             <div className="grid w-full col-span-2 md:col-span-1 items-center gap-1.5 mb-6">
@@ -83,7 +132,6 @@ export const RegisterComponent = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </div>
             <div className="grid w-full col-span-2 md:col-span-1 items-center gap-1.5 mb-6">
@@ -122,13 +170,10 @@ export const RegisterComponent = () => {
 
             <div className="grid w-full col-span-2 items-center gap-1.5 mb-6">
               <Label htmlFor="email">Profile Image*</Label>
-              <Input
-                className="w-full"
-                type="text"
-                id="profile"
-                placeholder="Your Profile Image"
-                value={profileImage}
-                onChange={(e) => setProfileImage(e.target.value)}
+
+              <FileUpload
+                onFileSelect={(file) => setProfileImage(file)}
+                clearImage={clearImage}
               />
             </div>
 
@@ -145,7 +190,7 @@ export const RegisterComponent = () => {
                 {loading ? (
                   <>
                     <Loader2 className="animate-spin mr-2 h-4 w-4" />
-                    Logging in...
+                    Creating User...
                   </>
                 ) : (
                   "Submit"

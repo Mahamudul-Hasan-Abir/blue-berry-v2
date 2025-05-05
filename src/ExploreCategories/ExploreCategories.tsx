@@ -11,15 +11,18 @@ const ExploreCategoris = () => {
           <div className="min-[992px]:w-[50%] w-full px-[12px] mb-[24px]">
             <div className="banner-box p-[30px] rounded-[20px] relative overflow-hidden bg-box-color-one bg-[#fbf2e5]">
               <div className="inner-banner-box relative z-[1] flex justify-between max-[480px]:flex-col">
-                <div className="side-image px-[12px] flex items-center max-[480px]:p-0 max-[480px]:mb-[12px] max-[480px]:justify-center">
-                  <Image
-                    src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736068652/one_eooxzs.png"
-                    alt="one"
-                    width={1000}
-                    height={1000}
-                    className="max-w-max w-[280px] h-[280px] max-[1399px]:w-[230px] max-[1399px]:h-[230px] max-[1199px]:w-[140px] max-[1199px]:h-[140px] max-[991px]:w-[280px] max-[991px]:h-[280px] max-[767px]:h-[200px] max-[767px]:w-[200px] max-[575px]:w-full max-[575px]:h-auto max-[480px]:w-[calc(100%-70px)]"
-                  />
+                <div className="side-image px-[12px] flex items-center justify-center max-[480px]:p-0 max-[480px]:mb-[12px]">
+                  <div className="relative w-[280px] h-[280px] max-[1399px]:w-[230px] max-[1399px]:h-[230px] max-[1199px]:w-[140px] max-[1199px]:h-[140px] max-[991px]:w-[280px] max-[991px]:h-[280px] max-[767px]:w-[200px] max-[767px]:h-[200px] max-[575px]:w-full max-[575px]:h-auto max-[480px]:w-[calc(100%-70px)]">
+                    <Image
+                      src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736068652/one_eooxzs.png"
+                      alt="one"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
                 </div>
+
                 <div className="inner-contact max-w-[250px] px-[12px] flex flex-col items-start justify-center max-[480px]:p-0 max-[480px]:max-w-full max-[480px]:text-center max-[480px]:items-center">
                   <Heading className="font-quicksand mb-[15px] text-[31px] text-[#3d4750] font-bold tracking-[0.03rem] leading-[1.2] max-[991px]:text-[28px] max-[575px]:text-[24px] max-[480px]:mb-[2px] max-[480px]:text-[22px]">
                     Tasty Snack &amp; Fast food
@@ -41,15 +44,18 @@ const ExploreCategoris = () => {
           <div className="min-[992px]:w-[50%] w-full px-[12px] mb-[24px]">
             <div className="banner-box p-[30px] rounded-[20px] relative overflow-hidden bg-box-color-two bg-[#ffe8ee]">
               <div className="inner-banner-box relative z-[1] flex justify-between max-[480px]:flex-col">
-                <div className="side-image px-[12px] flex items-center max-[480px]:p-0 max-[480px]:mb-[12px] max-[480px]:justify-center">
-                  <Image
-                    width={1000}
-                    height={1000}
-                    src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736068647/two_d3pj9b.png"
-                    alt="two"
-                    className="max-w-max w-[280px] h-[280px] max-[1399px]:w-[230px] max-[1399px]:h-[230px] max-[1199px]:w-[140px] max-[1199px]:h-[140px] max-[991px]:w-[280px] max-[991px]:h-[280px] max-[767px]:h-[200px] max-[767px]:w-[200px] max-[575px]:w-full max-[575px]:h-auto max-[480px]:w-[calc(100%-70px)]"
-                  />
+                <div className="side-image px-[12px] flex items-center justify-center max-[480px]:p-0 max-[480px]:mb-[12px]">
+                  <div className="relative w-[280px] h-[280px] max-[1399px]:w-[230px] max-[1399px]:h-[230px] max-[1199px]:w-[140px] max-[1199px]:h-[140px] max-[991px]:w-[280px] max-[991px]:h-[280px] max-[767px]:w-[200px] max-[767px]:h-[200px] max-[575px]:w-full max-[575px]:h-auto max-[480px]:w-[calc(100%-70px)]">
+                    <Image
+                      src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736068647/two_d3pj9b.png"
+                      alt="one"
+                      fill
+                      className="object-contain"
+                      priority
+                    />
+                  </div>
                 </div>
+
                 <div className="inner-contact max-w-[250px] px-[12px] flex flex-col items-start justify-center max-[480px]:p-0 max-[480px]:max-w-full max-[480px]:text-center max-[480px]:items-center">
                   <Heading className="font-quicksand mb-[15px] text-[31px] text-[#3d4750] font-bold tracking-[0.03rem] leading-[1.2] max-[991px]:text-[28px] max-[575px]:text-[24px] max-[480px]:mb-[2px] max-[480px]:text-[22px]">
                     Fresh Fruits &amp; Vegetables

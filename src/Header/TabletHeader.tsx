@@ -79,7 +79,7 @@ const TabletHeader = () => {
                 <DropdownMenuItem onClick={() => router.push("/login")}>
                   Login
                 </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => router.push("/login")}>
+                <DropdownMenuItem onClick={() => router.push("/register")}>
                   Register
                 </DropdownMenuItem>
                 <DropdownMenuItem>Checkout</DropdownMenuItem>

@@ -27,6 +27,15 @@ import React from "react";
 export default function DesktopHeader() {
   const [position, setPosition] = React.useState("bottom");
   const router = useRouter();
+
+  const user = typeof window !== "undefined" && localStorage.getItem("user");
+
+  const handleLogout = () => {
+    // Remove the token and user data from localStorage
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+  };
+
   return (
     <Container>
       <nav>
@@ -84,26 +93,18 @@ export default function DesktopHeader() {
               <div>
                 <p>Account</p>
                 <div className="hover:cursor-pointer">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <div className="nav-link p-[0] font-Poppins leading-[28px] text-[15px]  font-medium  hover:text-primary  tracking-[0.03rem] ">
-                        <p className=" font-bold">Login</p>
-                      </div>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-40">
-                      <DropdownMenuGroup>
-                        <DropdownMenuItem onClick={() => router.push("/login")}>
-                          Login
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                          onClick={() => router.push("/register")}
-                        >
-                          Register
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>Checkout</DropdownMenuItem>
-                      </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                  {user ? (
+                    <p className="font-bold" onClick={handleLogout}>
+                      Logout
+                    </p>
+                  ) : (
+                    <p
+                      className="font-bold"
+                      onClick={() => router.push("/login")}
+                    >
+                      Login
+                    </p>
+                  )}
                 </div>
               </div>
             </div>
@@ -162,9 +163,9 @@ export default function DesktopHeader() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-40">
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>Login</DropdownMenuItem>
-                    <DropdownMenuItem>Register</DropdownMenuItem>
-                    <DropdownMenuItem>Checkout</DropdownMenuItem>
+                    <DropdownMenuItem>Food</DropdownMenuItem>
+                    <DropdownMenuItem>Dairy</DropdownMenuItem>
+                    <DropdownMenuItem>Desert</DropdownMenuItem>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
@@ -186,9 +187,9 @@ export default function DesktopHeader() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-40">
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>Login</DropdownMenuItem>
-                    <DropdownMenuItem>Register</DropdownMenuItem>
-                    <DropdownMenuItem>Checkout</DropdownMenuItem>
+                    <DropdownMenuItem>About Us</DropdownMenuItem>
+                    <DropdownMenuItem>Contact Us</DropdownMenuItem>
+                    <DropdownMenuItem>Products</DropdownMenuItem>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>

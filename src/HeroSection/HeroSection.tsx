@@ -46,13 +46,15 @@ const HeroSeciton = () => {
 
               <div className="min-[992px]:w-[50%] w-full px-[12px] min-[992px]:order-2 order-1 mb-[24px]">
                 <div className="hero-image pr-[50px] relative max-[991px]:px-[50px] max-[575px]:px-[30px] flex justify-center max-[420px]:p-0">
-                  <Image
-                    src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736342063/hero-1_isrggd.png"
-                    alt="hero"
-                    width={1900}
-                    height={1080}
-                    className="w-full pb-[50px] opacity-100 max-[1199px]:pr-[30px] max-[991px]:pr-0 max-[575px]:pb-[30px] max-[420px]:pb-[15px]"
-                  />
+                  <div className="relative w-full h-[500px] max-[991px]:h-[400px] max-[575px]:h-[300px] max-[420px]:h-[250px]">
+                    <Image
+                      src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736342063/hero-1_isrggd.png"
+                      alt="hero"
+                      fill
+                      className="object-contain pb-[50px] opacity-100 max-[1199px]:pr-[30px] max-[991px]:pr-0 max-[575px]:pb-[30px] max-[420px]:pb-[15px]"
+                      priority
+                    />
+                  </div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 300 300"

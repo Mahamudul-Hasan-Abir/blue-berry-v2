@@ -12,6 +12,7 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { loginUserAction } from "@/app/Actions/loginUserAction";
+import Image from "next/image";
 
 export const LoginComponent = () => {
   const router = useRouter();
@@ -23,6 +24,15 @@ export const LoginComponent = () => {
 
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
+    if (!email.trim()) {
+      toast.error("Email is required!");
+      return;
+    }
+    if (!password.trim()) {
+      toast.error("Password is required!");
+      return;
+    }
+
     setLoading(true);
 
     try {
@@ -30,6 +40,8 @@ export const LoginComponent = () => {
       setAccessToken(res.token);
       setUser(res.data);
       toast.success(res.message);
+      setEmail("");
+      setPassword("");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message || "Login failed");
@@ -37,10 +49,23 @@ export const LoginComponent = () => {
       setLoading(false);
     }
   };
+
   return (
     <Container>
       <div className="h-screen flex justify-center items-center w-full">
         <div className="w-full">
+          <div
+            onClick={() => router.push("/")}
+            className=" w-30 h-20  relative mx-auto hover:cursor-pointer"
+          >
+            <Image
+              src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736070154/logo_nbbh2f.png"
+              alt="Logo"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
           <div className="mb-5">
             <Heading className="text-center">
               Log <span className="text-primary">in</span>
@@ -62,7 +87,6 @@ export const LoginComponent = () => {
                 placeholder="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                required
               />
             </div>
             <div className="grid w-full  items-center gap-1.5 mb-6">
