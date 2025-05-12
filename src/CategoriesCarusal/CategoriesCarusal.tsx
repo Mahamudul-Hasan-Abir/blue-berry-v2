@@ -65,9 +65,9 @@ const items = [
   },
 ];
 
-const ExploreCategoriesTablate = () => {
+const CategoriesCarusal = () => {
   return (
-    <div className="w-full ">
+    <div className="w-full my-10">
       <Swiper
         modules={[Autoplay]}
         loop
@@ -109,4 +109,4 @@ const ExploreCategoriesTablate = () => {
   );
 };
 
-export default ExploreCategoriesTablate;
+export default CategoriesCarusal;

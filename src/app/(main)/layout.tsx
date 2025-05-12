@@ -11,6 +11,7 @@ export default function AuthLayout({
     <div lang="en">
       <AuthProvider>
         <HeaderSection></HeaderSection>
+
         {children}
         <FooterSection></FooterSection>
       </AuthProvider>

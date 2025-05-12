@@ -11,7 +11,7 @@ const items = [
     id: 1,
     image:
       "https://res.cloudinary.com/dnfqhy8di/image/upload/v1731187281/user_profiles/b1ls4rxgwiaheaxy1rwx.jpg",
-    name: "Nadia Ondhokar Shuda",
+    name: "Nadia Ondhokar Shudha",
     role: "Co-Founder",
     comment:
       "I recently ordered from this food delivery platform and was genuinely impressed. The user interface is clean and easy to navigate. Delivery was on time, and the packaging was neat. The products were fresh and exactly as described. Definitely one of the best online food shopping experiences I’ve had!",
@@ -20,7 +20,7 @@ const items = [
     id: 2,
     image:
       "https://res.cloudinary.com/dnfqhy8di/image/upload/v1731026373/user_profiles/sa0myjl3faz7x9kfi9d6.jpg",
-    name: "Mecho Bag Sumiya",
+    name: "Mecho Bagg Sumiya",
     role: "Team-Leader",
 
     comment:
