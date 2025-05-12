@@ -54,7 +54,7 @@ const TopVendorsComponent = () => {
       </div>
       <div className="grid grid-cols-5 gap-5">
         {/* LEFT IMAGE SECTION */}
-        <div className="relative lg:col-span-2 col-span-5 w-full aspect-square rounded-3xl overflow-hidden">
+        <div className="relative lg:col-span-2 col-span-5 w-full aspect-square rounded-t-3xl rounded-bl-3xl overflow-hidden">
           <Image
             src={selectedVendor?.image ?? ""}
             fill
