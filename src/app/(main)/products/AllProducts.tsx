@@ -27,7 +27,9 @@ import {
 } from "@/components/ui/pagination";
 import { Slider } from "@/components/ui/slider";
 import { Heading } from "@/components/ui/Heading/Heading";
-
+interface Review {
+  rating: number;
+}
 interface Product {
   _id: string;
   name: string;
@@ -35,8 +37,15 @@ interface Product {
   sale_price: number;
   image: string;
   category: string;
-  color: string; // Add color field if needed
+  color: string;
+  reviews: Review[];
 }
+const getAverageRating = (reviews: { rating: number }[]): number => {
+  if (!reviews || reviews.length === 0) return 0;
+  const total = reviews.reduce((acc, cur) => acc + cur.rating, 0);
+  const average = total / reviews.length;
+  return Math.round(average); // Rounds to the nearest integer
+};
 
 const AllProducts = ({ products }: { products: Product[] }) => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -217,18 +226,21 @@ const AllProducts = ({ products }: { products: Product[] }) => {
 
         {/* Showing Products */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {paginatedProducts.map((product) => (
-            <ProductCard
-              key={product._id}
-              id={product._id}
-              name={product.name}
-              price={product.price}
-              salePrice={product.sale_price}
-              image={product.image}
-              category={product.category}
-              rating={4.5}
-            />
-          ))}
+          {paginatedProducts.map((product) => {
+            const averageRating = getAverageRating(product.reviews);
+            return (
+              <ProductCard
+                key={product._id}
+                id={product._id}
+                name={product.name}
+                price={product.price}
+                salePrice={product.sale_price}
+                image={product.image}
+                category={product.category}
+                rating={averageRating}
+              />
+            );
+          })}
         </div>
 
         {/* Pagination */}

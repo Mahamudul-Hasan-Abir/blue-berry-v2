@@ -23,17 +23,24 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React from "react";
+import { toast } from "sonner";
 
 export default function DesktopHeader() {
   const [position, setPosition] = React.useState("bottom");
   const router = useRouter();
 
-  const user = typeof window !== "undefined" && localStorage.getItem("user");
+  const [user, setUser] = React.useState<string | null>(null);
+
+  React.useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    setUser(storedUser);
+  }, []);
 
   const handleLogout = () => {
-    // Remove the token and user data from localStorage
     localStorage.removeItem("accessToken");
     localStorage.removeItem("user");
+    toast.success("Logged Out Successfully");
+    setUser(null);
   };
 
   return (
@@ -128,9 +135,9 @@ export default function DesktopHeader() {
             </div>
           </div>
         </div>
-        <div className=" grid grid-cols-12 ">
+        <div className=" grid grid-cols-12 mb-2">
           <div className=" col-span-2 flex justify-center ">
-            <div className="border-[1px] p-2 border-accent rounded-xl">
+            <div className="border-[1px] p-2 border-accent rounded-xl ">
               <svg
                 className="svg-icon size-7"
                 viewBox="0 0 1024 1024"
@@ -172,7 +179,7 @@ export default function DesktopHeader() {
             </div>
 
             <Link
-              href={"/"}
+              href={"/products"}
               className="nav-link p-[0] font-Poppins leading-[28px] text-[15px] font-medium text-[#3d4750] hover:text-primary tracking-[0.03rem] block"
             >
               Products

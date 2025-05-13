@@ -24,8 +24,22 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useRouter } from "next/navigation";
+import React from "react";
+import { toast } from "sonner";
 
 const TabletHeader = () => {
+  const [user, setUser] = React.useState<string | null>(null);
+  React.useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    setUser(storedUser);
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+    toast.success("Logged Out Successfully");
+    setUser(null);
+  };
   const router = useRouter();
   return (
     <Container>
@@ -76,9 +90,16 @@ const TabletHeader = () => {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-40">
               <DropdownMenuGroup>
-                <DropdownMenuItem onClick={() => router.push("/login")}>
-                  Login
-                </DropdownMenuItem>
+                {user ? (
+                  <DropdownMenuItem onClick={handleLogout}>
+                    Logout
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem onClick={() => router.push("/login")}>
+                    Login
+                  </DropdownMenuItem>
+                )}
+
                 <DropdownMenuItem onClick={() => router.push("/register")}>
                   Register
                 </DropdownMenuItem>

@@ -14,6 +14,28 @@ type ProductCardProps = {
   rating: number;
 };
 
+const renderStars = (rating: number) => {
+  const filled = Math.floor(rating);
+  const hasHalf = rating - filled >= 0.5;
+  const empty = 5 - filled - (hasHalf ? 1 : 0);
+
+  return (
+    <div className="text-[#fea99a] text-sm flex space-x-[1px]">
+      {Array(filled)
+        .fill(null)
+        .map((_, i) => (
+          <span key={`full-${i}`}>★</span>
+        ))}
+      {hasHalf && <span key="half">⯨</span>}
+      {Array(empty)
+        .fill(null)
+        .map((_, i) => (
+          <span key={`empty-${i}`}>☆</span>
+        ))}
+    </div>
+  );
+};
+
 export function ProductCard({
   id,
   name,
@@ -24,7 +46,7 @@ export function ProductCard({
   rating,
 }: ProductCardProps) {
   // Static product data
-
+  console.log(rating);
   return (
     <Link href={`/products/${id}`} className="w-full">
       <Card
@@ -41,7 +63,7 @@ export function ProductCard({
             <Image
               src={image}
               alt={name}
-              layout="fill"
+              fill
               className="rounded-md object-cover"
             />
           </div>
@@ -53,10 +75,7 @@ export function ProductCard({
             <div className="truncate max-w-[150px] text-sm text-[#777] font-light tracking-[0.03rem]">
               {category}
             </div>
-            <div className="text-[#fea99a] text-sm">
-              {"★".repeat(Math.round(rating))}
-              {"☆".repeat(5 - Math.round(rating))}
-            </div>
+            {renderStars(rating)}
           </div>
 
           {/* Product Name */}

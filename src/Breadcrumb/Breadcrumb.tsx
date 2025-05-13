@@ -26,8 +26,15 @@ export default function BreadCrumb() {
       const linkPath = pathname.split("/").filter(Boolean);
 
       const pathArray = linkPath.map((path, i) => {
+        // Check if the segment looks like a MongoDB ObjectId (24 hex chars)
+        const isObjectId = /^[a-f\d]{24}$/i.test(path);
+
+        const displayName = isObjectId
+          ? "Product Details Page"
+          : decodeURIComponent(path.replace(/-/g, " "));
+
         return {
-          name: decodeURIComponent(path.replace(/-/g, " ")),
+          name: displayName,
           path: "/" + linkPath.slice(0, i + 1).join("/"),
         };
       });
