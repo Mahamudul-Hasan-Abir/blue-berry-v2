@@ -68,8 +68,8 @@ export function ProductCard({
 
           {/* Price Section */}
           <div className="mt-4 flex justify-between">
-            <p className="text-base text-primary font-bold">৳{salePrice}</p>
-            <p className="text-sm text-red-400 line-through">৳{price}</p>
+            <p className="text-base text-primary font-bold">${salePrice}</p>
+            <p className="text-sm text-red-400 line-through">${price}</p>
           </div>
         </CardContent>
 
