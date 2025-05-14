@@ -89,7 +89,7 @@ const AllProducts = ({ products }: { products: Product[] }) => {
           <div>
             <Sheet>
               <SheetTrigger>
-                <div className="p-2 m-2 text-white bg-primary rounded-xl">
+                <div className="p-2 m-2 text-white bg-primary rounded-xl cursor-pointer hover:bg-primary/90">
                   <SlidersHorizontal />
                 </div>
               </SheetTrigger>

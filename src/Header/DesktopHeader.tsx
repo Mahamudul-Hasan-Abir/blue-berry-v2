@@ -125,8 +125,10 @@ export default function DesktopHeader() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <div className="text-primary">
-                <ShoppingCart className="size-8"></ShoppingCart>
+              <div className="text-primary cursor-pointer">
+                <Link href="/cart">
+                  <ShoppingCart className="size-8"></ShoppingCart>
+                </Link>
               </div>
               <div>
                 <p>4 items</p>

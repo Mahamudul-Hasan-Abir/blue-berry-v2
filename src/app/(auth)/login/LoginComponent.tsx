@@ -6,7 +6,7 @@ import { Heading } from "@/components/ui/Heading/Heading";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/Context/AuthContext";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
@@ -16,12 +16,47 @@ import Image from "next/image";
 
 export const LoginComponent = () => {
   const router = useRouter();
-  const { setAccessToken, setUser } = useAuth();
+  const { accessToken, setAccessToken, setUser } = useAuth();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    // If user is already logged in, redirect them
+    if (accessToken) {
+      const redirectPath = localStorage.getItem("redirectPath") || "/";
+      localStorage.removeItem("redirectPath");
+      router.push(redirectPath);
+    }
+  }, [accessToken, router]);
 
+  // const handleLogin = async (e: FormEvent) => {
+  //   e.preventDefault();
+  //   if (!email.trim()) {
+  //     toast.error("Email is required!");
+  //     return;
+  //   }
+  //   if (!password.trim()) {
+  //     toast.error("Password is required!");
+  //     return;
+  //   }
+
+  //   setLoading(true);
+
+  //   try {
+  //     const res = await loginUserAction(email, password);
+  //     setAccessToken(res.token);
+  //     setUser(res.data);
+  //     toast.success(res.message);
+  //     setEmail("");
+  //     setPassword("");
+  //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //   } catch (error: any) {
+  //     toast.error(error.message || "Login failed");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
@@ -42,6 +77,13 @@ export const LoginComponent = () => {
       toast.success(res.message);
       setEmail("");
       setPassword("");
+
+      // Get the redirect path from localStorage or default to home
+      const redirectPath = localStorage.getItem("redirectPath") || "/";
+      // Clear the redirect path from storage
+      localStorage.removeItem("redirectPath");
+      // Redirect to the original path
+      router.push(redirectPath);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message || "Login failed");
@@ -49,7 +91,6 @@ export const LoginComponent = () => {
       setLoading(false);
     }
   };
-
   return (
     <Container>
       <div className="h-screen flex justify-center items-center w-full">
