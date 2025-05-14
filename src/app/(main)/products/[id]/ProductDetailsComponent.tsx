@@ -17,6 +17,8 @@ import "swiper/css/autoplay";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
+import { addToCart } from "@/app/Actions/cartAction";
+import { Button } from "@/components/ui/button";
 
 export type TProductInformation = {
   weight: string;
@@ -185,6 +187,18 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
     );
   };
 
+  const handleAddToCart = async () => {
+    try {
+      const result = await addToCart(product._id, quantity);
+      console.log("Product added to cart:", result);
+      // You can show a success toast here
+      toast.success("Product added to Cart successfully!");
+    } catch (error) {
+      console.error("Add to cart failed:", error);
+      // You can show an error toast here
+    }
+  };
+
   return (
     <div>
       <BreadCrumb></BreadCrumb>
@@ -268,18 +282,12 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
               </div>
 
               {/* Add to Cart Button */}
-              <button
-                className="h-11 px-6 bg-primary text-white rounded-md text-base font-semibold transition hover:opacity-90"
-                disabled={product.stock_quantity <= 0}
-                onClick={() => {
-                  console.log("Added to cart", {
-                    productId: product._id,
-                    quantity,
-                  });
-                }}
-              >
+              {/* <button className="h-11 px-6 bg-primary text-white rounded-md text-base font-semibold transition hover:opacity-90">
                 Add to Cart
-              </button>
+              </button> */}
+              <Button className="h-11 px-6" onClick={handleAddToCart}>
+                Add to Cart
+              </Button>
             </div>
           </div>
         </div>

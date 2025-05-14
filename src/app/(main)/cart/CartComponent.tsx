@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
@@ -15,7 +16,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { getUserCart, removeFromCart } from "@/app/Actions/cartAction";
+import {
+  getUserCart,
+  removeFromCart,
+  updateCartItem,
+} from "@/app/Actions/cartAction";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -101,6 +106,33 @@ const CartComponent = () => {
     );
   };
 
+  const handleQuantityChange = async (
+    productId: string,
+    currentQuantity: number,
+    type: "increase" | "decrease"
+  ) => {
+    const newQuantity =
+      type === "increase" ? currentQuantity + 1 : currentQuantity - 1;
+
+    // Prevent decrease if current quantity is 1
+    if (type === "decrease" && currentQuantity <= 1) {
+      toast.info("Minimum quantity is 1");
+      return;
+    }
+
+    try {
+      await updateCartItem(productId, newQuantity);
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === productId ? { ...item, quantity: newQuantity } : item
+        )
+      );
+      toast.success("Cart updated!");
+    } catch (error: any) {
+      toast.error("Failed to update cart");
+      console.log("Failed to update cart", error);
+    }
+  };
   return (
     <Container>
       <BreadCrumb />
@@ -143,20 +175,32 @@ const CartComponent = () => {
                   </TableCell>
 
                   <TableCell className="text-center">
-                    <div className="flex justify-center items-center gap-2">
-                      <button
-                        className="px-2 border rounded"
-                        onClick={() => handleDecrement(item.id)}
+                    <div className="flex items-center gap-2">
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          handleQuantityChange(
+                            item.id,
+                            item.quantity,
+                            "decrease"
+                          )
+                        }
                       >
                         -
-                      </button>
+                      </Button>
                       <span>{item.quantity}</span>
-                      <button
-                        className="px-2 border rounded"
-                        onClick={() => handleIncrement(item.id)}
+                      <Button
+                        variant="outline"
+                        onClick={() =>
+                          handleQuantityChange(
+                            item.id,
+                            item.quantity,
+                            "increase"
+                          )
+                        }
                       >
                         +
-                      </button>
+                      </Button>
                     </div>
                   </TableCell>
 

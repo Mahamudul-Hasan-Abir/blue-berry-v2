@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/actions/cart.actions.ts
 
 export const getUserCart = async (token: string) => {
@@ -22,7 +23,6 @@ export const getUserCart = async (token: string) => {
   }
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const removeFromCart = async (productId: string): Promise<any> => {
   try {
     const accessToken = localStorage.getItem("accessToken");
@@ -46,6 +46,66 @@ export const removeFromCart = async (productId: string): Promise<any> => {
     return await res.json();
   } catch (error) {
     console.error("Remove from cart failed:", error);
+    throw error;
+  }
+};
+
+// src/app/Actions/cartAction.ts
+
+export const updateCartItem = async (
+  productId: string,
+  number: number
+): Promise<any> => {
+  try {
+    const accessToken = localStorage.getItem("accessToken");
+
+    const res = await fetch(
+      `http://localhost:5200/api/v2/user-cart/cart/update`,
+      {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify({ productId, number }),
+      }
+    );
+
+    if (!res.ok) {
+      throw new Error("Failed to update cart item");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Update cart item failed:", error);
+    throw error;
+  }
+};
+
+export const addToCart = async (
+  productId: string,
+  number: number
+): Promise<any> => {
+  try {
+    const token = localStorage.getItem("accessToken");
+
+    const res = await fetch("http://localhost:5200/api/v2/user-cart/cart/add", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ productId, number }),
+    });
+
+    if (!res.ok) {
+      throw new Error("Failed to add product to cart");
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error("Error adding to cart:", error);
     throw error;
   }
 };
