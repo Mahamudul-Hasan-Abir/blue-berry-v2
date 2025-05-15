@@ -2,9 +2,12 @@
 
 export const getSingleProduct = async (id: string) => {
   try {
-    const res = await fetch(`http://localhost:5200/api/v2/product/${id}`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_BLUE_BERRY}/product/${id}`,
+      {
+        next: { revalidate: 3600 }, // Revalidate every hour
+      }
+    );
 
     if (!res.ok) {
       throw new Error("Failed to fetch product");

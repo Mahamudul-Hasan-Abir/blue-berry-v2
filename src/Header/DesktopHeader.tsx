@@ -22,16 +22,17 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import { toast } from "sonner";
 
 export default function DesktopHeader() {
   const [position, setPosition] = React.useState("bottom");
+
   const router = useRouter();
 
   const [user, setUser] = React.useState<string | null>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const storedUser = localStorage.getItem("user");
     setUser(storedUser);
   }, []);
@@ -41,6 +42,7 @@ export default function DesktopHeader() {
     localStorage.removeItem("user");
     toast.success("Logged Out Successfully");
     setUser(null);
+    window.location.reload();
   };
 
   return (
@@ -121,7 +123,7 @@ export default function DesktopHeader() {
               </div>
               <div>
                 <p>3 Items</p>
-                <p className="font-bold">Wishlist</p>
+                <p className="font-bold">Order</p>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -131,7 +133,7 @@ export default function DesktopHeader() {
                 </Link>
               </div>
               <div>
-                <p>4 items</p>
+                <p>24 items</p>
                 <p className="font-bold">Cart</p>
               </div>
             </div>

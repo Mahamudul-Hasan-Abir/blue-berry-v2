@@ -33,11 +33,14 @@
 export const registerUserAction = async (
   data: FormData
 ): Promise<{ token: string; data: any; message: string }> => {
-  const res = await fetch("http://localhost:5200/api/v2/auth/register", {
-    method: "POST",
-    body: data, // FormData handles encoding
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `${process.env.NEXT_PUBLIC_BLUE_BERRY}/auth/register`,
+    {
+      method: "POST",
+      body: data, // FormData handles encoding
+      cache: "no-store",
+    }
+  );
 
   const responseData = await res.json();
   console.log("consoling form server action", responseData);

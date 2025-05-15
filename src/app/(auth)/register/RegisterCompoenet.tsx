@@ -71,6 +71,9 @@ export const RegisterComponent = () => {
       setAccessToken(res.token);
       setUser(res.data);
       toast.success(res.message);
+      const redirectPath = localStorage.getItem("redirectPath") || "/";
+      localStorage.removeItem("redirectPath"); // Clear after reading
+      router.push(redirectPath);
       setName("");
       setEmail("");
       setPassword("");

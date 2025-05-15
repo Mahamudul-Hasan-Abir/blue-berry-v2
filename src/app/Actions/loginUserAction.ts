@@ -1,12 +1,15 @@
 export const loginUserAction = async (email: string, password: string) => {
   try {
-    const response = await fetch(`http://localhost:5200/api/v2/auth/login`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ email, password }),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_NEXT_PUBLIC_BLUE_BERRY}/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, password }),
+      }
+    );
 
     const contentType = response.headers.get("content-type");
 

@@ -19,6 +19,8 @@ import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 import { addToCart } from "@/app/Actions/cartAction";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/Context/AuthContext";
+import { useRouter } from "next/navigation";
 
 export type TProductInformation = {
   weight: string;
@@ -67,6 +69,8 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
   const [rating, setRating] = useState<1 | 2 | 3 | 4 | 5 | null>(null);
   const [currentUser, setCurrentUser] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
@@ -81,7 +85,7 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
     setLoading(true);
     try {
       const res = await fetch(
-        `http://localhost:5200/api/v2/product/${product._id}/review`,
+        `${process.env.NEXT_PUBLIC_BLUE_BERRY}/product/${product._id}/review`,
         {
           method: "POST",
           headers: {
@@ -109,6 +113,7 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong while submitting your review.");
+      window.location.reload();
     } finally {
       setLoading(false);
     }
@@ -189,10 +194,16 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
 
   const handleAddToCart = async () => {
     try {
-      const result = await addToCart(product._id, quantity);
-      console.log("Product added to cart:", result);
-      // You can show a success toast here
-      toast.success("Product added to Cart successfully!");
+      if (!isAuthenticated) {
+        localStorage.setItem("redirectPath", window.location.pathname);
+        router.replace("/login");
+        toast.error("You have to login first to add product!");
+      } else {
+        const result = await addToCart(product._id, quantity);
+        console.log("Product added to cart:", result);
+        // You can show a success toast here
+        toast.success("Product added to Cart successfully!");
+      }
     } catch (error) {
       console.error("Add to cart failed:", error);
       // You can show an error toast here
@@ -314,6 +325,7 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
                   768: { slidesPerView: 1 },
                   1024: { slidesPerView: 1 },
                 }}
+                slidesPerView={1}
                 className="w-full"
                 onSwiper={(swiper) => {
                   // Force update after a small delay to ensure content is loaded

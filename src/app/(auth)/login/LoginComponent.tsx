@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import { Button } from "@/components/ui/button";
@@ -22,10 +23,9 @@ export const LoginComponent = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   useEffect(() => {
-    // If user is already logged in, redirect them
     if (accessToken) {
       const redirectPath = localStorage.getItem("redirectPath") || "/";
-      localStorage.removeItem("redirectPath");
+      localStorage.removeItem("redirectPath"); // Clear after reading
       router.push(redirectPath);
     }
   }, [accessToken, router]);
@@ -78,13 +78,9 @@ export const LoginComponent = () => {
       setEmail("");
       setPassword("");
 
-      // Get the redirect path from localStorage or default to home
       const redirectPath = localStorage.getItem("redirectPath") || "/";
-      // Clear the redirect path from storage
       localStorage.removeItem("redirectPath");
-      // Redirect to the original path
       router.push(redirectPath);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       toast.error(error.message || "Login failed");
     } finally {

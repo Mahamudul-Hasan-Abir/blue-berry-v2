@@ -22,7 +22,7 @@ const ProductDetailsPage = async ({
 export default ProductDetailsPage;
 
 export async function generateStaticParams() {
-  const res = await fetch("http://localhost:5200/api/v2/product", {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_BLUE_BERRY}/product`, {
     cache: "no-store",
   });
 
