@@ -1,7 +1,7 @@
 export const loginUserAction = async (email: string, password: string) => {
   try {
     const response = await fetch(
-      `${process.env.NEXT_PUBLIC_NEXT_PUBLIC_BLUE_BERRY}/auth/login`,
+      `https://blue-berry-server-v2.vercel.app/api/v2/auth/login`,
       {
         method: "POST",
         headers: {
