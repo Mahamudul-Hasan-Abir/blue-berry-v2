@@ -4,7 +4,7 @@
 export const getUserCart = async (token: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BLUE_BERRY}/user-cart/cart`,
+      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart`,
       {
         method: "GET",
         headers: {
@@ -31,7 +31,7 @@ export const removeFromCart = async (productId: string): Promise<any> => {
     const accessToken = localStorage.getItem("accessToken");
     console.log(accessToken);
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BLUE_BERRY}/user-cart/cart/remove`,
+      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart/remove`,
       {
         method: "DELETE",
         headers: {
@@ -63,7 +63,7 @@ export const updateCartItem = async (
     const accessToken = localStorage.getItem("accessToken");
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BLUE_BERRY}/user-cart/cart/update`,
+      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart/update`,
       {
         method: "PATCH",
         headers: {
@@ -93,7 +93,7 @@ export const addToCart = async (
     const token = localStorage.getItem("accessToken");
 
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BLUE_BERRY}/user-cart/cart/add`,
+      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart/add`,
       {
         method: "POST",
         headers: {

@@ -85,7 +85,7 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
     setLoading(true);
     try {
       const res = await fetch(
-        `${process.env.NEXT_PUBLIC_BLUE_BERRY}/product/${product._id}/review`,
+        `https://blue-berry-server-v2.vercel.app/api/v2/product/${product._id}/review`,
         {
           method: "POST",
           headers: {

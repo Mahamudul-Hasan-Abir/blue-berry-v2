@@ -3,7 +3,7 @@
 export const getSingleProduct = async (id: string) => {
   try {
     const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BLUE_BERRY}/product/${id}`,
+      `https://blue-berry-server-v2.vercel.app/api/v2/product/${id}`,
       {
         next: { revalidate: 3600 }, // Revalidate every hour
       }

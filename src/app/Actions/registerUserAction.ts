@@ -34,7 +34,7 @@ export const registerUserAction = async (
   data: FormData
 ): Promise<{ token: string; data: any; message: string }> => {
   const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BLUE_BERRY}/auth/register`,
+    `https://blue-berry-server-v2.vercel.app/api/v2/auth/register`,
     {
       method: "POST",
       body: data, // FormData handles encoding
