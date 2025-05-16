@@ -50,13 +50,16 @@ export default function DesktopHeader() {
       <nav>
         <div className="grid grid-cols-12 gap-10 py-2 border-b border-accent mb-2">
           <div className=" col-span-3 relative h-full">
-            <Image
-              src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736070154/logo_nbbh2f.png"
-              alt="Logo"
-              fill
-              className="object-contain"
-              priority
-            />
+            <Link href="/">
+              {" "}
+              <Image
+                src="https://res.cloudinary.com/dnfqhy8di/image/upload/v1736070154/logo_nbbh2f.png"
+                alt="Logo"
+                fill
+                className="object-contain"
+                priority
+              />
+            </Link>
           </div>
           <div className=" col-span-5 grid grid-cols-12">
             <div className="col-span-4">
@@ -88,9 +91,9 @@ export default function DesktopHeader() {
               </DropdownMenu>
             </div>
             <div className="col-span-7">
-              <Input className="h-full border-l-0 rounded-l-none rounded-r-none shadow-none border-r-0"></Input>
+              <Input className="xl:h-full lg:h-[50px] border-l-0 rounded-l-none rounded-r-none shadow-none border-r-0"></Input>
             </div>
-            <div className="col-span-1 flex justify-start items-center border-[1px] border-l-0 rounded-r-lg border-accent ">
+            <div className="col-span-1 lg:h-[50px] flex justify-start items-center border-[1px] border-l-0 rounded-r-lg border-accent ">
               <Search className="size-5"></Search>
             </div>
           </div>
@@ -198,15 +201,25 @@ export default function DesktopHeader() {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-40">
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>About Us</DropdownMenuItem>
-                    <DropdownMenuItem>Contact Us</DropdownMenuItem>
-                    <DropdownMenuItem>Products</DropdownMenuItem>
+                    <Link href="/about-us">
+                      <DropdownMenuItem>About Us</DropdownMenuItem>
+                    </Link>
+                    <Link href="/faq">
+                      <DropdownMenuItem>FAQ</DropdownMenuItem>
+                    </Link>
+                    <Link href="/contact-us">
+                      <DropdownMenuItem>Contect Us</DropdownMenuItem>
+                    </Link>
+                    <Link href="/products">
+                      {" "}
+                      <DropdownMenuItem>Products</DropdownMenuItem>
+                    </Link>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
             <Link
-              href={"/"}
+              href={"/blog"}
               className="nav-link p-[0] font-Poppins leading-[28px] text-[15px] font-medium text-[#3d4750] hover:text-primary tracking-[0.03rem] block"
             >
               Blog

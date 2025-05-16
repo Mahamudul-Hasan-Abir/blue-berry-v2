@@ -103,13 +103,18 @@ const TabletHeader = () => {
                 <DropdownMenuItem onClick={() => router.push("/register")}>
                   Register
                 </DropdownMenuItem>
-                <DropdownMenuItem>Checkout</DropdownMenuItem>
+                <DropdownMenuItem onClick={() => router.push("/checkout")}>
+                  Checkout
+                </DropdownMenuItem>
               </DropdownMenuGroup>
             </DropdownMenuContent>
           </DropdownMenu>
 
           <Star className="size-6 text-primary" />
-          <ShoppingCart className="size-6 text-primary" />
+          <ShoppingCart
+            onClick={() => router.push("/cart")}
+            className="size-6 text-primary"
+          />
 
           {/* Sheet Trigger for Menu */}
           <Sheet>
@@ -165,14 +170,14 @@ const TabletHeader = () => {
                     </AccordionTrigger>
                     <AccordionContent>
                       <div className="flex flex-col gap-2 ml-2">
-                        <Link href="#" className="hover:text-primary">
+                        <Link href="/about-us" className="hover:text-primary">
                           About Us
                         </Link>
-                        <Link href="#" className="hover:text-primary">
-                          Contact
+                        <Link href="/contact-us" className="hover:text-primary">
+                          Contact Us
                         </Link>
-                        <Link href="#" className="hover:text-primary">
-                          Checkout
+                        <Link href="/blog" className="hover:text-primary">
+                          blog
                         </Link>
                       </div>
                     </AccordionContent>

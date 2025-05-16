@@ -3,16 +3,13 @@
 
 export const getUserCart = async (token: string) => {
   try {
-    const res = await fetch(
-      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart`,
-      {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        next: { revalidate: 0 },
-      }
-    );
+    const res = await fetch(`http://localhost:5200/api/v2/user-cart/cart`, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      next: { revalidate: 0 },
+    });
 
     if (!res.ok) {
       throw new Error("Failed to fetch cart items");
@@ -31,7 +28,7 @@ export const removeFromCart = async (productId: string): Promise<any> => {
     const accessToken = localStorage.getItem("accessToken");
     console.log(accessToken);
     const res = await fetch(
-      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart/remove`,
+      `http://localhost:5200/api/v2/user-cart/cart/remove`,
       {
         method: "DELETE",
         headers: {
@@ -63,7 +60,7 @@ export const updateCartItem = async (
     const accessToken = localStorage.getItem("accessToken");
 
     const res = await fetch(
-      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart/update`,
+      `http://localhost:5200/api/v2/user-cart/cart/update`,
       {
         method: "PATCH",
         headers: {
@@ -92,17 +89,14 @@ export const addToCart = async (
   try {
     const token = localStorage.getItem("accessToken");
 
-    const res = await fetch(
-      `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart/add`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ productId, number }),
-      }
-    );
+    const res = await fetch(`http://localhost:5200/api/v2/user-cart/cart/add`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ productId, number }),
+    });
 
     if (!res.ok) {
       throw new Error("Failed to add product to cart");

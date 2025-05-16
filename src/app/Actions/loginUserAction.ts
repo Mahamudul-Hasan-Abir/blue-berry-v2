@@ -1,15 +1,12 @@
 export const loginUserAction = async (email: string, password: string) => {
   try {
-    const response = await fetch(
-      `https://blue-berry-server-v2.vercel.app/api/v2/auth/login`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      }
-    );
+    const response = await fetch(`http://localhost:5200/api/v2/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
 
     const contentType = response.headers.get("content-type");
 

@@ -22,12 +22,9 @@ const ProductDetailsPage = async ({
 export default ProductDetailsPage;
 
 export async function generateStaticParams() {
-  const res = await fetch(
-    `https://blue-berry-server-v2.vercel.app/api/v2/product`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`http://localhost:5200/api/v2/product`, {
+    cache: "no-store",
+  });
 
   const json = await res.json();
   const products = json.data?.slice(0, 100) || [];

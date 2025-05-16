@@ -85,7 +85,7 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
     setLoading(true);
     try {
       const res = await fetch(
-        `https://blue-berry-server-v2.vercel.app/api/v2/product/${product._id}/review`,
+        `http://localhost:5200/api/v2/product/${product._id}/review`,
         {
           method: "POST",
           headers: {
