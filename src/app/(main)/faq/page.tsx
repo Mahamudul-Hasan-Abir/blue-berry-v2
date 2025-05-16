@@ -1,3 +1,4 @@
+import BreadCrumb from "@/Breadcrumb/Breadcrumb";
 import {
   Accordion,
   AccordionContent,
@@ -50,6 +51,7 @@ const accordianItems = [
 const AboutUs = () => {
   return (
     <Container>
+      <BreadCrumb></BreadCrumb>
       <Heading className="text-center mt-20 text-3xl">
         Frequently Asked <span className="text-primary">Questions</span>
       </Heading>

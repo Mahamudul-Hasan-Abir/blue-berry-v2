@@ -15,7 +15,7 @@ const LoadingSpinner = () => {
         </div>
 
         {/* Spinner circle */}
-        <div className="absolute inset-0 border-4 border-t-primary border-r-transparent border-t-primary border-l-transparent rounded-full animate-spin" />
+        <div className="absolute inset-0 border-4 border-t-primary border-r-transparent border-b-primary border-l-transparent rounded-full animate-spin" />
       </div>
     </div>
   );

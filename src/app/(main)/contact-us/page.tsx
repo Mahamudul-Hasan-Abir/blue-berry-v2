@@ -1,4 +1,5 @@
 "use client";
+import BreadCrumb from "@/Breadcrumb/Breadcrumb";
 import { Button } from "@/components/ui/button";
 import Container from "@/components/ui/Container/Container";
 import { Input } from "@/components/ui/input";
@@ -9,6 +10,7 @@ const Map = dynamic(() => import("../../../Map/Map"), { ssr: false });
 const ContactUs = () => {
   return (
     <Container>
+      <BreadCrumb></BreadCrumb>
       <div className="grid grid-cols-2 gap-6 my-20">
         <form className="border-[1px] border-accent p-10 rounded-3xl col-span-2 lg:col-span-1">
           <div className="grid w-full  items-center gap-1.5 mb-6">

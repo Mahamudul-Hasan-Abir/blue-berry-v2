@@ -1,3 +1,4 @@
+import BreadCrumb from "@/Breadcrumb/Breadcrumb";
 import Container from "@/components/ui/Container/Container";
 import { Heading } from "@/components/ui/Heading/Heading";
 import Featers from "@/Featers/Featers";
@@ -6,6 +7,7 @@ import Image from "next/image";
 const AboutUs = () => {
   return (
     <Container>
+      <BreadCrumb></BreadCrumb>
       <div className="grid grid-cols-2 gap-10 my-20">
         <div className="col-span-2 lg:col-span-1 relative aspect-square">
           <Image

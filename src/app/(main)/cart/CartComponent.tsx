@@ -136,115 +136,121 @@ const CartComponent = () => {
   return (
     <Container>
       <BreadCrumb />
-      <div className="py-5 md:pb-20 md:pt-10 ">
-        <Heading className="text-3xl text-primary md:text-4xl lg:text-6xl">
-          Shopping Cart
-        </Heading>
-      </div>
-
-      <div className="grid grid-cols-12 gap-6">
-        <div className="w-full overflow-x-auto col-span-12 xl:col-span-8">
-          <Table className="min-w-[600px] w-full">
-            <TableHeader className="bg-secondary">
-              <TableRow>
-                <TableHead className="w-[50%]">Product</TableHead>
-                <TableHead className="w-[20%] text-center">Quantity</TableHead>
-                <TableHead className="w-[20%] text-center">Price</TableHead>
-                <TableHead className="w-[10%] text-center">
-                  Remove Item
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {cartItems.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell className="flex gap-4 items-center">
-                    <Image
-                      className="object-contain rounded"
-                      height={60}
-                      width={60}
-                      src={item.image}
-                      alt={item.name}
-                    />
-                    <div>
-                      <p className="font-medium">{item.name}</p>
-                      <p className="text-muted-foreground text-sm">
-                        SKU#: {item.sku}
-                      </p>
-                    </div>
-                  </TableCell>
-
-                  <TableCell className="text-center">
-                    <div className="flex items-center gap-2">
-                      <Button
-                        variant="outline"
-                        onClick={() =>
-                          handleQuantityChange(
-                            item.id,
-                            item.quantity,
-                            "decrease"
-                          )
-                        }
-                      >
-                        -
-                      </Button>
-                      <span>{item.quantity}</span>
-                      <Button
-                        variant="outline"
-                        onClick={() =>
-                          handleQuantityChange(
-                            item.id,
-                            item.quantity,
-                            "increase"
-                          )
-                        }
-                      >
-                        +
-                      </Button>
-                    </div>
-                  </TableCell>
-
-                  <TableCell className="text-center">
-                    ${item.price * item.quantity}
-                  </TableCell>
-                  <TableCell className="text-center">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={() => {
-                        {
-                          handleRemoveItem(item.id);
-                        }
-                        console.log(item.id);
-                      }}
-                      className="cursor-pointer"
-                    >
-                      <Trash2 className="text-red-500" />
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+      <div className="min-h-[70vh]">
+        <div className="py-5 md:pb-20 md:pt-10 ">
+          <Heading className="text-3xl text-primary md:text-4xl lg:text-6xl">
+            Shopping Cart
+          </Heading>
         </div>
-        <div className="billing border-[1px] rounded-2xl border-accent col-span-12 xl:col-span-4 h-[220px] p-5">
-          <div className="flex justify-between my-3">
-            <p className="font-medium text-lg text-[#777]">Total:</p>
-            <p className="font-medium text-lg text-[#777]">
-              ${total.toFixed(2)}
-            </p>
+
+        <div className="grid grid-cols-12 gap-6">
+          <div className="w-full overflow-x-auto col-span-12 xl:col-span-8">
+            <Table className="min-w-[600px] w-full">
+              <TableHeader className="bg-secondary">
+                <TableRow>
+                  <TableHead className="w-[50%]">Product</TableHead>
+                  <TableHead className="w-[20%] text-center">
+                    Quantity
+                  </TableHead>
+                  <TableHead className="w-[20%] text-center">Price</TableHead>
+                  <TableHead className="w-[10%] text-center">
+                    Remove Item
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {cartItems.map((item) => (
+                  <TableRow key={item.id}>
+                    <TableCell className="flex gap-4 items-center">
+                      <Image
+                        className="object-contain rounded"
+                        height={60}
+                        width={60}
+                        src={item.image}
+                        alt={item.name}
+                      />
+                      <div>
+                        <p className="font-medium">{item.name}</p>
+                        <p className="text-muted-foreground text-sm">
+                          SKU#: {item.sku}
+                        </p>
+                      </div>
+                    </TableCell>
+
+                    <TableCell className="text-center">
+                      <div className="flex items-center gap-2">
+                        <Button
+                          variant="outline"
+                          onClick={() =>
+                            handleQuantityChange(
+                              item.id,
+                              item.quantity,
+                              "decrease"
+                            )
+                          }
+                        >
+                          -
+                        </Button>
+                        <span>{item.quantity}</span>
+                        <Button
+                          variant="outline"
+                          onClick={() =>
+                            handleQuantityChange(
+                              item.id,
+                              item.quantity,
+                              "increase"
+                            )
+                          }
+                        >
+                          +
+                        </Button>
+                      </div>
+                    </TableCell>
+
+                    <TableCell className="text-center">
+                      ${item.price * item.quantity}
+                    </TableCell>
+                    <TableCell className="text-center">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => {
+                          {
+                            handleRemoveItem(item.id);
+                          }
+                          console.log(item.id);
+                        }}
+                        className="cursor-pointer"
+                      >
+                        <Trash2 className="text-red-500" />
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
           </div>
-          <div className="flex justify-between my-3">
-            <p className="font-medium text-lg text-[#777]">VAT (15%):</p>
-            <p className="font-medium text-lg text-[#777]">${vat.toFixed(2)}</p>
+          <div className="billing border-[1px] rounded-2xl border-accent col-span-12 xl:col-span-4 h-[220px] p-5">
+            <div className="flex justify-between my-3">
+              <p className="font-medium text-lg text-[#777]">Total:</p>
+              <p className="font-medium text-lg text-[#777]">
+                ${total.toFixed(2)}
+              </p>
+            </div>
+            <div className="flex justify-between my-3">
+              <p className="font-medium text-lg text-[#777]">VAT (15%):</p>
+              <p className="font-medium text-lg text-[#777]">
+                ${vat.toFixed(2)}
+              </p>
+            </div>
+            <div className="flex justify-between my-3">
+              <p className="font-medium text-lg text-primary">Grand Total:</p>
+              <p className="font-medium text-lg text-primary">
+                ${grandTotal.toFixed(2)}
+              </p>
+            </div>
+            <Button className="w-full mt-4">Checkout</Button>
           </div>
-          <div className="flex justify-between my-3">
-            <p className="font-medium text-lg text-primary">Grand Total:</p>
-            <p className="font-medium text-lg text-primary">
-              ${grandTotal.toFixed(2)}
-            </p>
-          </div>
-          <Button className="w-full mt-4">Checkout</Button>
         </div>
       </div>
     </Container>

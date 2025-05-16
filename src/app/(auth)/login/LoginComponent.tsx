@@ -30,33 +30,6 @@ export const LoginComponent = () => {
     }
   }, [accessToken, router]);
 
-  // const handleLogin = async (e: FormEvent) => {
-  //   e.preventDefault();
-  //   if (!email.trim()) {
-  //     toast.error("Email is required!");
-  //     return;
-  //   }
-  //   if (!password.trim()) {
-  //     toast.error("Password is required!");
-  //     return;
-  //   }
-
-  //   setLoading(true);
-
-  //   try {
-  //     const res = await loginUserAction(email, password);
-  //     setAccessToken(res.token);
-  //     setUser(res.data);
-  //     toast.success(res.message);
-  //     setEmail("");
-  //     setPassword("");
-  //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  //   } catch (error: any) {
-  //     toast.error(error.message || "Login failed");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
   const handleLogin = async (e: FormEvent) => {
     e.preventDefault();
     if (!email.trim()) {
