@@ -51,7 +51,7 @@ export function ProductCard({
     <Link href={`/products/${id}`} className="w-full">
       <Card
         className="flex flex-col overflow-hidden border border-accent cursor-pointer 
-                 h-[450px] sm:h-[360px] md:h-[360px] lg:h-[360px] xl:h-[450px] transition-all duration-300"
+                 h-[450px] sm:h-[360px] md:h-[360px] lg:h-[360px] xl:h-[450px] transition-all duration-300 shadow-none"
       >
         <CardContent className="flex-1 p-4">
           {/* Image Section */}
