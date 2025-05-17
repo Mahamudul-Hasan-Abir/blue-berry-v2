@@ -2,6 +2,7 @@ import Container from "@/components/ui/Container/Container";
 import { Heading } from "@/components/ui/Heading/Heading";
 import Image from "next/image";
 import BlogCard from "../blog/BlogCard";
+import BreadCrumb from "@/Breadcrumb/Breadcrumb";
 const BlogsArray = [
   {
     id: 1,
@@ -31,6 +32,7 @@ const BlogsArray = [
 const BlogDetailsPage = () => {
   return (
     <Container>
+      <BreadCrumb></BreadCrumb>
       <div className="space-y-6 mt-20">
         {/* Hero Image */}
         <div className="relative w-full h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px] rounded-xl overflow-hidden">
@@ -42,9 +44,6 @@ const BlogDetailsPage = () => {
             priority
           />
         </div>
-
-        {/* Date */}
-        <p className="text-gray-500 text-sm">sadf</p>
 
         {/* Title */}
         <Heading className="text-2xl md:text-3xl font-bold">

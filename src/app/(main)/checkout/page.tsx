@@ -20,7 +20,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-type CartItem = {
+import { toast } from "sonner";
+type CheckoutItem = {
   id: string;
   name: string;
   sku: string;
@@ -30,13 +31,13 @@ type CartItem = {
 };
 
 const Checkout = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [CheckoutItems, setCheckoutItems] = useState<CheckoutItem[]>([]);
   const [total, setTotal] = useState(0);
   const [vat, setVat] = useState(0);
   const [grandTotal, setGrandTotal] = useState(0);
 
   useEffect(() => {
-    const totalPrice = cartItems.reduce(
+    const totalPrice = CheckoutItems.reduce(
       (acc, item) => acc + item.price * item.quantity,
       0
     );
@@ -46,7 +47,7 @@ const Checkout = () => {
     setTotal(totalPrice);
     setVat(vatAmount);
     setGrandTotal(grand);
-  }, [cartItems]);
+  }, [CheckoutItems]);
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -64,13 +65,50 @@ const Checkout = () => {
         quantity: item.number,
       }));
 
-      setCartItems(mapped);
+      setCheckoutItems(mapped);
     };
 
     fetchCart();
   }, []);
 
-  console.log(cartItems);
+  console.log(CheckoutItems);
+
+  // Handler
+  const handlePlaceOrder = async () => {
+    const token = localStorage.getItem("accessToken");
+    if (!token) return;
+
+    const orderPayload = {
+      products: CheckoutItems.map((item) => ({
+        productId: item.id,
+        quantity: item.quantity,
+      })),
+      totalPrice: grandTotal,
+    };
+
+    try {
+      const response = await fetch(
+        "https://blue-berry-server-v2.vercel.app/api/v2/orders/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(orderPayload),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        toast.success('"Order placed successfully!"');
+      } else {
+        toast.error("Order placed successfully!");
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+    }
+  };
 
   return (
     <Container>
@@ -104,7 +142,7 @@ const Checkout = () => {
             </div>
             <hr />
             <div className="space-y-4 mt-6">
-              {cartItems.map((item) => (
+              {CheckoutItems.map((item) => (
                 <Card
                   key={item.id}
                   className="flex flex-row items-center p-4 gap-4 bg-secondary shadow-none"
@@ -180,7 +218,8 @@ const Checkout = () => {
 
               <p className="text-sm text-gray-600">
                 By creating an account you will be able to shop faster, be up to
-                date on an order’s status, and keep track of previous orders.
+                date on an order&apos;s status, and keep track of previous
+                orders.
               </p>
               <p className="text-red-500">
                 [You don&apos;t have to fill out this form for testing purposes.
@@ -287,7 +326,9 @@ const Checkout = () => {
                 </DropdownMenu>
               </div>
             </div>
-            <Button type="submit">Place Order</Button>
+            <Button type="button" onClick={handlePlaceOrder}>
+              Place Order
+            </Button>
           </form>
         </div>
       </div>

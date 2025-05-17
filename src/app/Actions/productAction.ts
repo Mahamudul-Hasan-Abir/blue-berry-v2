@@ -2,9 +2,12 @@
 
 export const getSingleProduct = async (id: string) => {
   try {
-    const res = await fetch(`http://localhost:5200/api/v2/product/${id}`, {
-      next: { revalidate: 3600 }, // Revalidate every hour
-    });
+    const res = await fetch(
+      `https://blue-berry-server-v2.vercel.app/api/v2/product/${id}`,
+      {
+        next: { revalidate: 3600 }, // Revalidate every hour
+      }
+    );
 
     if (!res.ok) {
       throw new Error("Failed to fetch product");

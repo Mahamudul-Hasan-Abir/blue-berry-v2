@@ -23,6 +23,8 @@ import {
 } from "@/app/Actions/cartAction";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
+import DealOfTheDay from "@/DealOfTheDay/DealOfTheDay";
+import NewArrivalForCart from "@/NewArraivalForCart/NewArraivalForCart";
 
 // Dummy product data type
 type CartItem = {
@@ -136,7 +138,7 @@ const CartComponent = () => {
   return (
     <Container>
       <BreadCrumb />
-      <div className="min-h-[70vh]">
+      <div>
         <div className="py-5 md:pb-20 md:pt-10 ">
           <Heading className="text-3xl text-primary md:text-4xl lg:text-6xl">
             Shopping Cart
@@ -253,6 +255,7 @@ const CartComponent = () => {
           </div>
         </div>
       </div>
+      <NewArrivalForCart></NewArrivalForCart>
     </Container>
   );
 };

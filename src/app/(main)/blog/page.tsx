@@ -1,5 +1,6 @@
 import Container from "@/components/ui/Container/Container";
 import BlogCard from "./BlogCard";
+import BreadCrumb from "@/Breadcrumb/Breadcrumb";
 
 const BlogsArray = [
   {
@@ -54,6 +55,7 @@ const BlogsArray = [
 const BlogPage = () => {
   return (
     <Container>
+      <BreadCrumb></BreadCrumb>
       <div className="my-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {BlogsArray.map((blogData) => (
           <div key={blogData.id}>
