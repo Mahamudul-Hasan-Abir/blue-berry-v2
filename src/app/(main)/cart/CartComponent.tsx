@@ -25,6 +25,7 @@ import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import DealOfTheDay from "@/DealOfTheDay/DealOfTheDay";
 import NewArrivalForCart from "@/NewArraivalForCart/NewArraivalForCart";
+import Link from "next/link";
 
 // Dummy product data type
 type CartItem = {
@@ -251,7 +252,9 @@ const CartComponent = () => {
                 ${grandTotal.toFixed(2)}
               </p>
             </div>
-            <Button className="w-full mt-4">Checkout</Button>
+            <Link href="/checkout">
+              <Button className="w-full mt-4">Checkout</Button>
+            </Link>
           </div>
         </div>
       </div>

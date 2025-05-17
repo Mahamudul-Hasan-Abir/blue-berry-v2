@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/Heading/Heading";
 import { Badge } from "@/components/ui/badge";
 import clsx from "clsx";
+import { useAuth } from "@/Context/AuthContext";
+import { useRouter } from "next/navigation";
 
 interface Product {
   _id: string;
@@ -40,6 +42,8 @@ interface Order {
 }
 
 const Orders = () => {
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
   const [orders, setOrders] = useState<Order[]>([]);
   const [selectedOrderIndex, setSelectedOrderIndex] = useState<number>(0);
   // Get Orders For Individual User
@@ -113,6 +117,18 @@ const Orders = () => {
       alert("Error cancelling order. Try again.");
     }
   };
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      localStorage.setItem("redirectPath", window.location.pathname);
+      router.replace("/login");
+    }
+  }, [isAuthenticated, router]);
+
+  if (!isAuthenticated) {
+    return null;
+  }
+
   return (
     <Container>
       <BreadCrumb></BreadCrumb>

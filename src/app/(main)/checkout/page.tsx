@@ -17,8 +17,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import { useAuth } from "@/Context/AuthContext";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 type CheckoutItem = {
@@ -109,7 +111,19 @@ const Checkout = () => {
       console.error("Error placing order:", error);
     }
   };
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      localStorage.setItem("redirectPath", window.location.pathname);
+      router.replace("/login");
+    }
+  }, [isAuthenticated, router]);
+
+  if (!isAuthenticated) {
+    return null;
+  }
   return (
     <Container>
       <BreadCrumb></BreadCrumb>

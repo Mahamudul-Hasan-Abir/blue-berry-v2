@@ -122,11 +122,15 @@ export default function DesktopHeader() {
             </div>
             <div className="flex items-center gap-2">
               <div className="text-primary">
-                <Star className="size-8"></Star>
+                <Link href="/orders">
+                  <Star className="size-8"></Star>
+                </Link>
               </div>
               <div>
                 <p>3 Items</p>
-                <p className="font-bold">Order</p>
+                <Link href="/orders">
+                  <p className="font-bold">Order</p>
+                </Link>
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -137,7 +141,9 @@ export default function DesktopHeader() {
               </div>
               <div>
                 <p>24 items</p>
-                <p className="font-bold">Cart</p>
+                <Link href="/cart">
+                  <p className="font-bold">Cart</p>
+                </Link>
               </div>
             </div>
           </div>
@@ -213,6 +219,10 @@ export default function DesktopHeader() {
                     <Link href="/products">
                       {" "}
                       <DropdownMenuItem>Products</DropdownMenuItem>
+                    </Link>
+                    <Link href="/checkout">
+                      {" "}
+                      <DropdownMenuItem>checkout</DropdownMenuItem>
                     </Link>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>

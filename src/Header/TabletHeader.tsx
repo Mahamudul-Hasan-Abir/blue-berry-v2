@@ -26,6 +26,7 @@ import {
 import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "sonner";
+import { Heading } from "@/components/ui/Heading/Heading";
 
 const TabletHeader = () => {
   const [user, setUser] = React.useState<string | null>(null);
@@ -53,6 +54,7 @@ const TabletHeader = () => {
               fill
               className="object-contain"
               priority
+              onClick={() => router.push("/")}
             />
           </div>
           <div className="md:col-span-1 flex justify-center items-center">
@@ -110,7 +112,10 @@ const TabletHeader = () => {
             </DropdownMenuContent>
           </DropdownMenu>
 
-          <Star className="size-6 text-primary" />
+          <Star
+            onClick={() => router.push("/orders")}
+            className="size-6 text-primary"
+          />
           <ShoppingCart
             onClick={() => router.push("/cart")}
             className="size-6 text-primary"
@@ -123,9 +128,12 @@ const TabletHeader = () => {
             </SheetTrigger>
             <SheetContent side="right" className="px-5">
               <SheetHeader>
-                <h2 className="text-lg font-semibold text-center mt-2">
+                {/* <h2 className="text-lg font-semibold text-center mt-2">
                   Navigation
-                </h2>
+                </h2> */}
+                <Heading className="text-center text-primary">
+                  Navigation
+                </Heading>
               </SheetHeader>
               <div className="mt-6 flex flex-col gap-4">
                 <Link
@@ -178,6 +186,12 @@ const TabletHeader = () => {
                         </Link>
                         <Link href="/blog" className="hover:text-primary">
                           blog
+                        </Link>{" "}
+                        <Link href="/faq" className="hover:text-primary">
+                          FAQ
+                        </Link>{" "}
+                        <Link href="/products" className="hover:text-primary">
+                          Products
                         </Link>
                       </div>
                     </AccordionContent>
