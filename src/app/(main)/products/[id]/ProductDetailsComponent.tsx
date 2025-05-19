@@ -77,6 +77,10 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
       setCurrentUser(JSON.parse(storedUser));
     }
   }, []);
+  console.log(
+    "consoling prodcut reviews from product details page",
+    product.reviews
+  );
 
   const handleSubmitReview = async () => {
     if (!rating || !reviewText.trim()) return;
@@ -109,11 +113,11 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
 
       setReviewText("");
       setRating(null);
+      window.location.reload();
       // optionally refetch product or update UI
     } catch (error) {
       console.error(error);
       toast.error("Something went wrong while submitting your review.");
-      window.location.reload();
     } finally {
       setLoading(false);
     }
@@ -325,7 +329,6 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
                   768: { slidesPerView: 1 },
                   1024: { slidesPerView: 1 },
                 }}
-                slidesPerView={1}
                 className="w-full"
                 onSwiper={(swiper) => {
                   // Force update after a small delay to ensure content is loaded

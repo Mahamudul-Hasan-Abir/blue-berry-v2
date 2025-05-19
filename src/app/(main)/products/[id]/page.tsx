@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { getSingleProduct } from "@/app/Actions/productAction";
 import ProductDetailsComponent from "./ProductDetailsComponent";
 
@@ -21,18 +20,18 @@ const ProductDetailsPage = async ({
 
 export default ProductDetailsPage;
 
-export async function generateStaticParams() {
-  const res = await fetch(
-    `https://blue-berry-server-v2.vercel.app/api/v2/product`,
-    {
-      cache: "no-store",
-    }
-  );
+// export async function generateStaticParams() {
+//   const res = await fetch(
+//     `https://blue-berry-server-v2.vercel.app/api/v2/product`,
+//     {
+//       cache: "no-store",
+//     }
+//   );
 
-  const json = await res.json();
-  const products = json.data?.slice(0, 100) || [];
+//   const json = await res.json();
+//   const products = json.data?.slice(0, 100) || [];
 
-  return products.map((product: any) => ({
-    id: product._id,
-  }));
-}
+//   return products.map((product: any) => ({
+//     id: product._id,
+//   }));
+// }

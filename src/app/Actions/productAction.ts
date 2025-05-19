@@ -5,7 +5,7 @@ export const getSingleProduct = async (id: string) => {
     const res = await fetch(
       `https://blue-berry-server-v2.vercel.app/api/v2/product/${id}`,
       {
-        next: { revalidate: 3600 }, // Revalidate every hour
+        cache: "no-store",
       }
     );
 

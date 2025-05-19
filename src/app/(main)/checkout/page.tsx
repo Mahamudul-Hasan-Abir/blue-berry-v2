@@ -104,6 +104,7 @@ const Checkout = () => {
       const data = await response.json();
       if (data.success) {
         toast.success('"Order placed successfully!"');
+        router.push("/orders");
       } else {
         toast.error("Order placed successfully!");
       }

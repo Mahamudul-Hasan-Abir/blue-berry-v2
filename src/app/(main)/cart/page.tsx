@@ -6,19 +6,20 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 
 const Cart = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!isAuthenticated) {
+    if (!loading && isAuthenticated === false) {
       localStorage.setItem("redirectPath", window.location.pathname);
       router.replace("/login");
     }
-  }, [isAuthenticated, router]);
-
-  if (!isAuthenticated) {
-    return null;
-  }
+  }, [isAuthenticated, router, loading]);
+  // Prevent rendering anything while auth is loading
+  if (loading || isAuthenticated === false) return null;
+  // if (!isAuthenticated) {
+  //   return null;
+  // }
 
   return (
     <div>

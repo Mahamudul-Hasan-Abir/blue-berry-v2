@@ -214,3 +214,56 @@ const TabletHeader = () => {
 };
 
 export default TabletHeader;
+
+
+
+
+
+
+
+/* {
+  "name": "Peach Marmalade",
+  "description": "Smooth and golden marmalade made from ripe peaches with a hint of citrus.",
+  "price": 6.49,
+  "sale_price": 4.99,
+  "category": "Food",
+  "stock_quantity": 95,
+  "sku": "PCMARM004",
+  "status": "In Stock",
+  "unit": ["jar"],
+  "information": {
+    "weight": "400g",
+    "dimensions": "8x8x8 cm",
+    "color": ["golden yellow"],
+    "brand": "Golden Grove",
+    "form_factor": "solid",
+    "quantity": 1,
+    "container_type": "glass jar",
+    "shelf_life": "1 year",
+    "ingredients": ["peaches", "sugar", "lemon zest"],
+    "other_features": "all-natural, handmade"
+  },
+  "reviews": [],
+  "image": "https://res.cloudinary.com/dnfqhy8di/image/upload/v1736624105/user_profiles/b277dnu8kwolksebuuk0.jpg"
+}
+
+create diffrent products using this images urls
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448136/back-3_llz7o0.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448135/back-4_x42qyn.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448134/6_qph6ns.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448134/8_hmxg9f.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448135/back-6_javcdw.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448134/1_1_gpbtmk.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448134/7_osd1nh.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448134/4_givm5k.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448134/5_rlft9f.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448134/3_qczwjk.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448133/3_1_zjc7yf.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448133/4_1_cqveai.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448133/4_1_cqveai.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448133/2_jzwmxc.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448133/2_1_yz5ltj.jpg,
+https://res.cloudinary.com/dnfqhy8di/image/upload/v1747448133/1_jb37bq.jpg
+
+
+*/

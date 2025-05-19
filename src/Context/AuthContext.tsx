@@ -1,65 +1,3 @@
-// /* eslint-disable @typescript-eslint/no-explicit-any */
-// "use client";
-
-// import {
-//   createContext,
-//   ReactNode,
-//   useContext,
-//   useEffect,
-//   useState,
-// } from "react";
-
-// type AuthContextType = {
-//   accessToken: string | null;
-
-//   user: any;
-//   setAccessToken: (token: string | null) => void;
-//   setUser: (user: any) => void;
-//   logout: () => void;
-// };
-
-// const AuthContext = createContext<AuthContextType | undefined>(undefined);
-
-// export const AuthProvider = ({ children }: { children: ReactNode }) => {
-//   const [accessToken, setAccessToken] = useState<string | null>(null);
-//   const [user, setUser] = useState<any>(null);
-//   useEffect(() => {
-//     const token = localStorage.getItem("accessToken");
-//     const userData = localStorage.getItem("user");
-
-//     if (token) setAccessToken(token);
-//     if (userData && userData !== "undefined") {
-//       try {
-//         setUser(JSON.parse(userData));
-//       } catch (error) {
-//         console.error("Error parsing user data:", error);
-//         localStorage.removeItem("user"); // optional cleanup
-//       }
-//     }
-//   }, []);
-
-//   const logout = () => {
-//     localStorage.removeItem("accessToken");
-//     localStorage.removeItem("user");
-//     setAccessToken(null);
-//     setUser(null);
-//   };
-
-//   return (
-//     <AuthContext.Provider
-//       value={{ accessToken, user, setAccessToken, setUser, logout }}
-//     >
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };
-// export const useAuth = (): AuthContextType => {
-//   const context = useContext(AuthContext);
-//   if (!context) throw new Error("useAuth must be used within an AuthProvider");
-//   return context;
-// };
-
-// context/AuthContext.tsx
 "use client";
 
 import {
@@ -85,6 +23,7 @@ type AuthContextType = {
   setUser: (user: User | null) => void;
   logout: () => void;
   isAuthenticated: boolean;
+  loading: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -92,7 +31,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [accessToken, setAccessToken] = useState<string | null>(null);
   const [user, setUser] = useState<User | null>(null);
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     const userData = localStorage.getItem("user");
@@ -106,6 +45,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         localStorage.removeItem("user");
       }
     }
+    setLoading(false);
   }, []);
 
   const logout = () => {
@@ -136,6 +76,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     },
     logout,
     isAuthenticated: !!accessToken,
+    loading,
   };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
