@@ -55,11 +55,8 @@
   --accent: oklch(94.91% 0.000 0);            /* #eeeeee */
   --accent-foreground: oklch(0.205 0 0);
 
-
   --heading: oklch(39.25% 0.020 245.50);            
   --heading-foreground: oklch(0.205 0 0);
-
-  
 
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -129,15 +126,13 @@
   * {
     @apply border-border outline-ring/50;
   }
-  
+
   body {
     @apply bg-background text-foreground;
   }
   body {
     @apply text-[14px] text-[#686e7d] ;
   }
- 
+
 }
-
-
 
