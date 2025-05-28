@@ -73,7 +73,7 @@ const CartComponent = () => {
       if (!token) return;
 
       const data = await getUserCart(token);
-      console.log("consoling fetched cart data", data);
+
       const mapped = data.map((item: any) => ({
         id: item.product._id,
         name: item.product.name,
@@ -88,8 +88,6 @@ const CartComponent = () => {
 
     fetchCart();
   }, []);
-
-  console.log(cartItems);
 
   const handleIncrement = (id: string) => {
     setCartItems((prev) =>
@@ -133,7 +131,6 @@ const CartComponent = () => {
       toast.success("Cart updated!");
     } catch (error: any) {
       toast.error("Failed to update cart");
-      console.log("Failed to update cart", error);
     }
   };
   return (
@@ -221,7 +218,6 @@ const CartComponent = () => {
                           {
                             handleRemoveItem(item.id);
                           }
-                          console.log(item.id);
                         }}
                         className="cursor-pointer"
                       >

@@ -12,7 +12,6 @@ export const registerUserAction = async (
   );
 
   const responseData = await res.json();
-  console.log("consoling form server action", responseData);
 
   if (!res.ok) {
     throw new Error(responseData?.message || "Registration failed");

@@ -48,7 +48,7 @@
 //       setAccessToken(res.token);
 //       setUser(res.data);
 //       toast.success(res.message);
-//       console.log(res.data);
+//       (res.data);
 //       setEmail("");
 //       setPassword("");
 

@@ -2,11 +2,8 @@
 
 import Container from "@/components/ui/Container/Container";
 import { Heading } from "@/components/ui/Heading/Heading";
-import { useAuth } from "@/Context/AuthContext";
 
 const AdminPage = () => {
-  const { user } = useAuth();
-  console.log(user);
   return (
     <Container>
       <div className="bg-primary h-40 flex justify-center items-center mt-10 rounded-2xl">

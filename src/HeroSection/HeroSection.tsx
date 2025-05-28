@@ -1,5 +1,7 @@
+import { Button } from "@/components/ui/button";
 import { Heading } from "@/components/ui/Heading/Heading";
 import Image from "next/image";
+import Link from "next/link";
 
 const HeroSeciton = () => {
   return (
@@ -35,12 +37,14 @@ const HeroSeciton = () => {
                     <br />
                     &amp; Fresh Vegetables
                   </Heading>
-                  <a
-                    href="/shop-left-sidebar-col-3"
-                    className="bb-btn-1 transition-all duration-300 ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[8px] px-[20px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border border-[#3d4750] max-[1199px]:py-[3px] max-[1199px]:px-[15px] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white"
-                  >
-                    Shop Now
-                  </a>
+                  <Link href="/products">
+                    <Button
+                      variant={"outline"}
+                      className="bb-btn-1 transition-all duration-300 ease-in-out font-Poppins leading-[28px] tracking-[0.03rem] py-[8px] px-[20px] text-[14px] font-normal text-[#3d4750] bg-transparent rounded-[10px] border border-[#3d4750] max-[1199px]:py-[3px] max-[1199px]:px-[15px] hover:bg-[#6c7fd8] hover:border-[#6c7fd8] hover:text-white"
+                    >
+                      Shop Now
+                    </Button>
+                  </Link>
                 </div>
               </div>
 

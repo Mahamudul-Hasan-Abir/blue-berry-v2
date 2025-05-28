@@ -29,7 +29,7 @@ export const getUserCart = async (token: string) => {
 export const removeFromCart = async (productId: string): Promise<any> => {
   try {
     const accessToken = localStorage.getItem("accessToken");
-    console.log(accessToken);
+
     const res = await fetch(
       `https://blue-berry-server-v2.vercel.app/api/v2/user-cart/cart/remove`,
       {

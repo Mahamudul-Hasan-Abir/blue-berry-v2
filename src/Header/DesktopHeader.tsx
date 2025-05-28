@@ -150,19 +150,21 @@ export default function DesktopHeader() {
         </div>
         <div className=" grid grid-cols-12 mb-2">
           <div className=" col-span-2 flex justify-center ">
-            <div className="border-[1px] p-2 border-accent rounded-xl ">
-              <svg
-                className="svg-icon size-7"
-                viewBox="0 0 1024 1024"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  className="fill-primary"
-                  d="M384 928H192a96 96 0 0 1-96-96V640a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM192 608a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V640a32 32 0 0 0-32-32H192zM784 928H640a96 96 0 0 1-96-96V640a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v144a32 32 0 0 1-64 0V640a32 32 0 0 0-32-32H640a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h144a32 32 0 0 1 0 64zM384 480H192a96 96 0 0 1-96-96V192a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM192 160a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32H192zM832 480H640a96 96 0 0 1-96-96V192a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM640 160a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32H640z"
-                ></path>
-              </svg>
-            </div>
+            <Link href="/products">
+              <div className="border-[1px] p-2 border-accent rounded-xl cursor-pointer">
+                <svg
+                  className="svg-icon size-7"
+                  viewBox="0 0 1024 1024"
+                  version="1.1"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    className="fill-primary"
+                    d="M384 928H192a96 96 0 0 1-96-96V640a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM192 608a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V640a32 32 0 0 0-32-32H192zM784 928H640a96 96 0 0 1-96-96V640a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v144a32 32 0 0 1-64 0V640a32 32 0 0 0-32-32H640a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h144a32 32 0 0 1 0 64zM384 480H192a96 96 0 0 1-96-96V192a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM192 160a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32H192zM832 480H640a96 96 0 0 1-96-96V192a96 96 0 0 1 96-96h192a96 96 0 0 1 96 96v192a96 96 0 0 1-96 96zM640 160a32 32 0 0 0-32 32v192a32 32 0 0 0 32 32h192a32 32 0 0 0 32-32V192a32 32 0 0 0-32-32H640z"
+                  ></path>
+                </svg>
+              </div>
+            </Link>
           </div>
           <div className=" col-span-9 flex justify-between items-center">
             <Link
@@ -172,10 +174,9 @@ export default function DesktopHeader() {
               Home
             </Link>
 
-            <div className="hover:cursor-pointer">
+            {/* <div className="hover:cursor-pointer">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  {/* <Button variant="outline">Open</Button> */}
                   <div className="nav-link flex p-[0] font-Poppins leading-[28px] text-[15px] items-center font-medium text-[#3d4750] hover:text-primary  tracking-[0.03rem] ">
                     <p className="mr-1">Categories</p>
                     <ChevronDown className="size-4"></ChevronDown>
@@ -189,7 +190,7 @@ export default function DesktopHeader() {
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
-            </div>
+            </div> */}
 
             <Link
               href={"/products"}

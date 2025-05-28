@@ -143,7 +143,7 @@ const TabletHeader = () => {
                   Home
                 </Link>
 
-                <Accordion type="single" collapsible className="w-full">
+                {/* <Accordion type="single" collapsible className="w-full">
                   <AccordionItem value="categories">
                     <AccordionTrigger className="text-[15px] font-medium text-[#3d4750] hover:text-primary tracking-[0.03rem]">
                       Categories
@@ -162,7 +162,7 @@ const TabletHeader = () => {
                       </div>
                     </AccordionContent>
                   </AccordionItem>
-                </Accordion>
+                </Accordion> */}
 
                 <Link
                   href={"/products"}
@@ -214,12 +214,6 @@ const TabletHeader = () => {
 };
 
 export default TabletHeader;
-
-
-
-
-
-
 
 /* {
   "name": "Peach Marmalade",

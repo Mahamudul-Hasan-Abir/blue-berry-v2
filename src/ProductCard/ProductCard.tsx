@@ -46,7 +46,7 @@ export function ProductCard({
   rating,
 }: ProductCardProps) {
   // Static product data
-  console.log(rating);
+
   return (
     <Link href={`/products/${id}`} className="w-full">
       <Card

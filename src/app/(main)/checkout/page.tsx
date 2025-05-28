@@ -57,7 +57,7 @@ const Checkout = () => {
       if (!token) return;
 
       const data = await getUserCart(token);
-      console.log("consoling fetched cart data", data);
+
       const mapped = data.map((item: any) => ({
         id: item.product._id,
         name: item.product.name,
@@ -72,8 +72,6 @@ const Checkout = () => {
 
     fetchCart();
   }, []);
-
-  console.log(CheckoutItems);
 
   // Handler
   const handlePlaceOrder = async () => {

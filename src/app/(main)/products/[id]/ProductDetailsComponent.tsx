@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import BreadCrumb from "@/Breadcrumb/Breadcrumb";
@@ -77,10 +78,6 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
       setCurrentUser(JSON.parse(storedUser));
     }
   }, []);
-  console.log(
-    "consoling prodcut reviews from product details page",
-    product.reviews
-  );
 
   const handleSubmitReview = async () => {
     if (!rating || !reviewText.trim()) return;
@@ -204,7 +201,7 @@ const ProductDetailsComponent = ({ product }: ProductDetailsComponentProps) => {
         toast.error("You have to login first to add product!");
       } else {
         const result = await addToCart(product._id, quantity);
-        console.log("Product added to cart:", result);
+
         // You can show a success toast here
         toast.success("Product added to Cart successfully!");
       }
